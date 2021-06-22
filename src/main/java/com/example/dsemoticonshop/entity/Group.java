@@ -24,4 +24,6 @@ public class Group {
     @ManyToOne
     private Category category_id;
 
+    @OneToMany
+    private List<GroupEmoticon> group_emoticons = new ArrayList<>();
 }
