@@ -5,8 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -25,9 +24,9 @@ public class EmoticonDTO {
 
     private int quantity;
 
-    private List<GroupDTO> group_id;
+    private List<Integer> group_id;
 
-    private UserDTO creator;
+    private int creator;
 
-    private Date register_date;
+    private LocalDateTime register_date;
 }

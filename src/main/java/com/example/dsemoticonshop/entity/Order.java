@@ -3,7 +3,7 @@ package com.example.dsemoticonshop.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Builder
@@ -18,11 +18,14 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int order_id;
 
-    private Date order_date;
+    private LocalDateTime order_date;
 
     private String method;
 
     private int order_price;
+
+    @ManyToOne
+    private Emoticon emoticon_id;
 
     @ManyToOne
     private User purchaser;

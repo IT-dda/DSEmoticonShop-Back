@@ -3,8 +3,8 @@ package com.example.dsemoticonshop.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -34,5 +34,5 @@ public class Emoticon {
     @ManyToOne
     private User creator;
 
-    private Date register_date;
+    private LocalDateTime register_date;
 }

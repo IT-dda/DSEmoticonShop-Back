@@ -3,7 +3,7 @@ package com.example.dsemoticonshop.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Entity
 @Builder
@@ -20,9 +20,9 @@ public class Coupon {
 
     private String coupon_name;
 
-    private Date expired_date;
+    private LocalDateTime expired_date;
 
-    private Date used_date;
+    private LocalDateTime used_date;
 
     private boolean isUsed;
 

@@ -17,7 +17,7 @@ public class GroupDTO {
 
     private String group_name;
 
-    private CategoryDTO category_id;
+    private int category_id;
 
-    private List<GroupEmoticonDTO> group_emoticon;
+    private List<Integer> group_emoticon;
 }

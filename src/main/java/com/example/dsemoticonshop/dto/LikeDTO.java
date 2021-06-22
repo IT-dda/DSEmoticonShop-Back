@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LikeDTO {
 
-    private OrderDTO order_id;
+    private int user_id;
 
-    private UserDTO user_id;
+    private int emoticon_id;
 }

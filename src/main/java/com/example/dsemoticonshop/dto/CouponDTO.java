@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Getter
 @Builder
@@ -17,13 +17,13 @@ public class CouponDTO {
 
     private String coupon_name;
 
-    private Date expired_date;
+    private LocalDateTime expired_date;
 
-    private Date used_date;
+    private LocalDateTime used_date;
 
     private boolean isUsed;
 
     private int percentage;
 
-    private UserDTO user_id;
+    private int user_id;
 }
