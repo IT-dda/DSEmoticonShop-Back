@@ -11,6 +11,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class GroupEmoticonDTO {
 
+    private int id;
+
     private int group_id;
 
     private int emoticon_id;
