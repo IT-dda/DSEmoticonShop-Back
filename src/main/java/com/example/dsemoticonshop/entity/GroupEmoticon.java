@@ -11,6 +11,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
+@Table(name = "group_emoticon")
 public class GroupEmoticon {
 
     @Id

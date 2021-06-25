@@ -2,10 +2,8 @@ package com.example.dsemoticonshop.entity;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Builder
@@ -14,13 +12,14 @@ import javax.persistence.OneToOne;
 @Getter
 @Setter
 @ToString
-public class Gift {
+public class Gift implements Serializable {
 
     @Id
     @OneToOne
     private Order order_id;
 
     @Id
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
     private User user_id;
 }

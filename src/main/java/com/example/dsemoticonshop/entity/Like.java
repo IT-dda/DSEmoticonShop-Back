@@ -2,9 +2,8 @@ package com.example.dsemoticonshop.entity;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Builder
@@ -13,14 +12,16 @@ import javax.persistence.ManyToOne;
 @Getter
 @Setter
 @ToString
-public class Like {
+@Table(name = "liked")
+public class Like implements Serializable {
 
     @Id
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
     private User user_id;
 
     @Id
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Emoticon emoticon_id;
 
 }

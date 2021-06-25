@@ -28,7 +28,8 @@ public class Coupon {
 
     private int percentage;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
     private User user_id;
 
 }
