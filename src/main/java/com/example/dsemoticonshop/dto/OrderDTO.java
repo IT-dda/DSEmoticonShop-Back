@@ -23,5 +23,4 @@ public class OrderDTO {
 
     private int purchaser;
 
-    private boolean isGift;
 }
