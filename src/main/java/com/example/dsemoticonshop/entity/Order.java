@@ -31,5 +31,4 @@ public class Order {
     @ManyToOne
     private User purchaser;
 
-    private boolean isGift;
 }

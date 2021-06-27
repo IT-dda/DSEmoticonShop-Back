@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Entity
 @Builder
@@ -12,14 +13,25 @@ import java.io.Serializable;
 @Getter
 @Setter
 @ToString
-public class Gift implements Serializable {
+public class Gift {
 
     @Id
-    @OneToOne
-    private Order order_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int gift_id;
 
-    @Id
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
-    private User user_id;
+    private LocalDateTime order_date;
+
+    private String method;
+
+    private int order_price;
+
+    @ManyToOne
+    private Emoticon emoticon_id;
+
+    @ManyToOne
+    private User from_id;
+
+    @ManyToOne
+    private User to_id;
+
 }
