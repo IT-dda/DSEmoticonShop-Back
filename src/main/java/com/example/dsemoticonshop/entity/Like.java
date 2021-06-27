@@ -13,6 +13,7 @@ import java.io.Serializable;
 @Setter
 @ToString
 @Table(name = "liked")
+@IdClass(LikePK.class)
 public class Like implements Serializable {
 
     @Id
