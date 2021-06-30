@@ -29,7 +29,7 @@ public class Emoticon {
     private int quantity;
 
     @OneToMany
-    private List<Group> group_id = new ArrayList<>();
+    private List<Group> group_id;
 
     @ManyToOne
     private User creator;
