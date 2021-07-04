@@ -89,8 +89,8 @@ public class InsertTestData {
             Emoticon emoticon = Emoticon.builder()
                     .emoticon_id(i)
                     .emoticon_name("emoticon" + i)
-                    .emoticon_price((i % 2 == 0) ? 2000 : 3750)
-                    .sale_price((i % 2 == 0) ? 2000 : 3750)
+                    .emoticon_price((i % 2 == 0) ? 2500 : 3750)
+                    .sale_price((i % 2 == 0) ? 2500 : 3750)
                     .quantity(1)
                     .creator(u.get())
                     .register_date(LocalDateTime.now())
@@ -182,6 +182,7 @@ public class InsertTestData {
             Optional<Emoticon> e = emoticonRepository.findById(i);
             e.orElse(null);
             Like like = Like.builder()
+                    .like_id(i)
                     .user_id(u.get())
                     .emoticon_id(e.get())
                     .build();
@@ -204,7 +205,8 @@ public class InsertTestData {
         Optional<Emoticon> emoticon = emoticonRepository.findById(1);
         System.out.println(emoticon.get());
 
-        // GroupEmoticon 패스..
+        Optional<GroupEmoticon> groupEmoticon = groupEmoticonRepository.findById(1);
+        System.out.println(groupEmoticon.get());
 
         Optional<Order> order = orderRepository.findById(1);
         System.out.println(order.get());
@@ -215,7 +217,8 @@ public class InsertTestData {
         Optional<Gift> gift = giftRepository.findById(1);
         System.out.println(gift.get());
 
-        // Like 패스..
+        Optional<Like> like = likeRepository.findById(1);
+        System.out.println(like.get());
 
     }
 }

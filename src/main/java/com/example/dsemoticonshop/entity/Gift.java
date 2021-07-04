@@ -16,22 +16,28 @@ import java.time.LocalDateTime;
 public class Gift {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "gift_id")
     private int gift_id;
 
+    @Column(name = "order_date")
     private LocalDateTime order_date;
 
+    @Column(name = "method")
     private String method;
 
+    @Column(name = "order_price")
     private int order_price;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "emoticon_id")
     private Emoticon emoticon_id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "from_id")
     private User from_id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "to_id")
     private User to_id;
 
 }
