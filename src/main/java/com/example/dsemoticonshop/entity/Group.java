@@ -17,14 +17,17 @@ import java.util.List;
 public class Group {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "group_id")
     private int group_id;
 
+    @Column(name = "group_name")
     private String group_name;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "category_id")
     private Category category_id;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "group_id")
     private List<GroupEmoticon> group_emoticons;
 }

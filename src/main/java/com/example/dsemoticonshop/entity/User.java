@@ -11,18 +11,19 @@ import javax.persistence.*;
 @Getter
 @Setter
 @ToString
-@Table(name = "MEMBER")
+@Table(name = "member")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "MEMBER_ID")
+    @Column(name = "member_id")
     private Integer user_id;
 
-    @Column(name = "MEMBER_NAME")
+    @Column(name = "member_name")
     private String user_name;
 
+    @Column(name = "email")
     private String email;
 
+    @Column(name = "has_Profile")
     private boolean hasProfile;
 }

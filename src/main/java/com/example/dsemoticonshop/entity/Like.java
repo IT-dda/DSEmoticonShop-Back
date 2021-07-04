@@ -13,16 +13,18 @@ import java.io.Serializable;
 @Setter
 @ToString
 @Table(name = "liked")
-@IdClass(LikePK.class)
 public class Like implements Serializable {
 
     @Id
-    @ManyToOne(fetch = FetchType.LAZY)
+    @Column(name = "liked_id")
+    private int like_id;
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "member_id")
     private User user_id;
 
-    @Id
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "emoticon_id")
     private Emoticon emoticon_id;
 
 }
