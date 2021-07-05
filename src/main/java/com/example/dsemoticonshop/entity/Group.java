@@ -1,9 +1,10 @@
 package com.example.dsemoticonshop.entity;
 
 import lombok.*;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -12,7 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
 @Table(name = "grp")
 public class Group {
 
@@ -30,4 +30,10 @@ public class Group {
     @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "group_id")
     private List<GroupEmoticon> group_emoticons;
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
+
 }

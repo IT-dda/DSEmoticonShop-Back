@@ -1,6 +1,8 @@
 package com.example.dsemoticonshop.entity;
 
 import lombok.*;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.*;
 
@@ -10,7 +12,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
 public class Category {
 
     @Id
@@ -19,4 +20,10 @@ public class Category {
 
     @Column(name = "category_name")
     private String category_name;
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
+
 }
