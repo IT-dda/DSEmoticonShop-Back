@@ -1,6 +1,8 @@
 package com.example.dsemoticonshop.entity;
 
 import lombok.*;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.*;
 
@@ -10,7 +12,6 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
 @Table(name = "group_emoticon")
 public class GroupEmoticon {
 
@@ -25,5 +26,10 @@ public class GroupEmoticon {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "emoticon_id")
     private Emoticon emoticon_id;
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
+    }
 
 }
