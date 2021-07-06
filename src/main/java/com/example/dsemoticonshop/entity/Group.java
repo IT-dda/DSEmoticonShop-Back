@@ -27,10 +27,6 @@ public class Group {
     @JoinColumn(name = "category_id")
     private Category category_id;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "group_id")
-    private List<GroupEmoticon> group_emoticons;
-
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);

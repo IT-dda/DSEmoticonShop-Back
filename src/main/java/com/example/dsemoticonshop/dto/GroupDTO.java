@@ -1,5 +1,6 @@
 package com.example.dsemoticonshop.dto;
 
+import com.example.dsemoticonshop.entity.Category;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -17,7 +18,6 @@ public class GroupDTO {
 
     private String group_name;
 
-    private int category_id;
+    private Category category_id;
 
-    private List<Integer> group_emoticon;
 }

@@ -1,5 +1,6 @@
 package com.example.dsemoticonshop.dto;
 
+import com.example.dsemoticonshop.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,9 +25,7 @@ public class EmoticonDTO {
 
     private int quantity;
 
-    private List<Integer> group_id;
-
-    private int creator;
+    private User creator;
 
     private LocalDateTime register_date;
 }

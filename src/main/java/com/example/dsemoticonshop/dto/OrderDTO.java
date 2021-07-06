@@ -1,5 +1,7 @@
 package com.example.dsemoticonshop.dto;
 
+import com.example.dsemoticonshop.entity.Emoticon;
+import com.example.dsemoticonshop.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -23,6 +25,8 @@ public class OrderDTO {
     
     private int emoticon_id;
 
-    private int purchaser;
+    private Emoticon emoticon_id;
+
+    private User purchaser;
 
 }

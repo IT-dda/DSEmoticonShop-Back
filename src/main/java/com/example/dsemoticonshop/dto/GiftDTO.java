@@ -1,5 +1,7 @@
 package com.example.dsemoticonshop.dto;
 
+import com.example.dsemoticonshop.entity.Emoticon;
+import com.example.dsemoticonshop.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,8 +23,10 @@ public class GiftDTO {
 
     private int order_price;
 
-    private int from_id;
+    private Emoticon emoticon_id;
 
-    private int to_id;
+    private User from_id;
+
+    private User to_id;
 
 }

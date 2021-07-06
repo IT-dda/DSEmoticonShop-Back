@@ -1,5 +1,6 @@
 package com.example.dsemoticonshop.dto;
 
+import com.example.dsemoticonshop.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -25,5 +26,5 @@ public class CouponDTO {
 
     private int percentage;
 
-    private int user_id;
+    private User user_id;
 }
