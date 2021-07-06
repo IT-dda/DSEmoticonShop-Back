@@ -22,8 +22,6 @@ public class OrderDTO {
     private String method;
 
     private int order_price;
-    
-    private int emoticon_id;
 
     private Emoticon emoticon_id;
 

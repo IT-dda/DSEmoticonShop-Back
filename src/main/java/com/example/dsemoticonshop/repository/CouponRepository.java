@@ -11,6 +11,6 @@ public interface CouponRepository extends JpaRepository<Coupon, Integer> {
 
     // 사용 / 미사용 쿠폰 조회
     @Query("select c from Coupon c where c.user_id = :id and c.isUsed = :use")
-    List<Coupon> findByUser_id (@Param("id") String user_id, @Param("use") Boolean isUsed);
+    List<Coupon> getList(@Param("id") int user_id, @Param("use") boolean isUsed);
 
 }
