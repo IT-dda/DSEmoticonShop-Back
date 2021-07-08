@@ -2,6 +2,7 @@ package com.example.dsemoticonshop.service.implement;
 
 import com.example.dsemoticonshop.dto.LikeDTO;
 import com.example.dsemoticonshop.entity.Like;
+import com.example.dsemoticonshop.entity.User;
 import com.example.dsemoticonshop.repository.LikeRepository;
 import com.example.dsemoticonshop.service.interfaces.LikeService;
 import lombok.RequiredArgsConstructor;
@@ -19,8 +20,8 @@ public class LikeServiceImpl implements LikeService {
     private final LikeRepository likeRepository;
 
     @Override
-    public List<LikeDTO> getAllWithId(int id) {
-        List<Like> likeList = likeRepository.getList(id);
+    public List<LikeDTO> getAllWithId(User user) {
+        List<Like> likeList = likeRepository.getList(user);
         return likeList.stream().map(like -> entityToDTO(like)).collect(Collectors.toList());
     }
 }

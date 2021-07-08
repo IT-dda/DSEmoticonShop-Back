@@ -2,12 +2,13 @@ package com.example.dsemoticonshop.service.interfaces;
 
 import com.example.dsemoticonshop.dto.OrderDTO;
 import com.example.dsemoticonshop.entity.Order;
+import com.example.dsemoticonshop.entity.User;
 
 import java.util.List;
 
 public interface OrderService {
 
-    List<OrderDTO> getAllWithId(int id);
+    List<OrderDTO> getAllWithId(User user);
 
     default Order dtoToEntity(OrderDTO orderDTO) {
         Order order = Order.builder()

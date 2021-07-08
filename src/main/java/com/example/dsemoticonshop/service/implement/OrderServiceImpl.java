@@ -2,6 +2,7 @@ package com.example.dsemoticonshop.service.implement;
 
 import com.example.dsemoticonshop.dto.OrderDTO;
 import com.example.dsemoticonshop.entity.Order;
+import com.example.dsemoticonshop.entity.User;
 import com.example.dsemoticonshop.repository.OrderRepository;
 import com.example.dsemoticonshop.service.interfaces.OrderService;
 import lombok.RequiredArgsConstructor;
@@ -19,8 +20,8 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepository orderRepository;
 
     @Override
-    public List<OrderDTO> getAllWithId(int id) {
-        List<Order> orderList = orderRepository.getList(id);
+    public List<OrderDTO> getAllWithId(User user) {
+        List<Order> orderList = orderRepository.getList(user);
         return orderList.stream().map(order -> entityToDTO(order)).collect(Collectors.toList());
     }
 }

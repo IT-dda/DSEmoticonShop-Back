@@ -2,6 +2,7 @@ package com.example.dsemoticonshop.service.implement;
 
 import com.example.dsemoticonshop.dto.GiftDTO;
 import com.example.dsemoticonshop.entity.Gift;
+import com.example.dsemoticonshop.entity.User;
 import com.example.dsemoticonshop.repository.GiftRepository;
 import com.example.dsemoticonshop.service.interfaces.GiftService;
 import lombok.RequiredArgsConstructor;
@@ -19,13 +20,13 @@ public class GiftServiceImpl implements GiftService {
     private final GiftRepository giftRepository;
 
     @Override
-    public List<GiftDTO> getAllWithId(int id, boolean isReceived) {
+    public List<GiftDTO> getAllWithId(User user, boolean isReceived) {
         List<Gift> giftList;
 
         if (isReceived) {
-            giftList = giftRepository.getReceivedList(id);
+            giftList = giftRepository.getReceivedList(user);
         } else {
-            giftList = giftRepository.getSentList(id);
+            giftList = giftRepository.getSentList(user);
         }
 
         return giftList.stream().map(gift -> entityToDTO(gift)).collect(Collectors.toList());

@@ -2,12 +2,13 @@ package com.example.dsemoticonshop.service.interfaces;
 
 import com.example.dsemoticonshop.dto.CouponDTO;
 import com.example.dsemoticonshop.entity.Coupon;
+import com.example.dsemoticonshop.entity.User;
 
 import java.util.List;
 
 public interface CouponService {
 
-    List<CouponDTO> getAllWithId (int id, boolean isUsed);
+    List<CouponDTO> getAllWithId(User user, boolean isUsed);
 
     default Coupon dtoToEntity(CouponDTO couponDTO) {
         Coupon coupon = Coupon.builder()

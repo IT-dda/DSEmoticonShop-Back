@@ -2,12 +2,13 @@ package com.example.dsemoticonshop.service.interfaces;
 
 import com.example.dsemoticonshop.dto.GiftDTO;
 import com.example.dsemoticonshop.entity.Gift;
+import com.example.dsemoticonshop.entity.User;
 
 import java.util.List;
 
 public interface GiftService {
 
-    List<GiftDTO> getAllWithId(int id, boolean isReceived);
+    List<GiftDTO> getAllWithId(User user, boolean isReceived);
 
     default Gift dtoToEntity(GiftDTO giftDTO) {
         Gift gift = Gift.builder()

@@ -2,12 +2,13 @@ package com.example.dsemoticonshop.service.interfaces;
 
 import com.example.dsemoticonshop.dto.LikeDTO;
 import com.example.dsemoticonshop.entity.Like;
+import com.example.dsemoticonshop.entity.User;
 
 import java.util.List;
 
 public interface LikeService {
 
-    List<LikeDTO> getAllWithId(int id);
+    List<LikeDTO> getAllWithId(User user);
 
     default Like dtoToEntity(LikeDTO likeDTO) {
         Like like = Like.builder()
