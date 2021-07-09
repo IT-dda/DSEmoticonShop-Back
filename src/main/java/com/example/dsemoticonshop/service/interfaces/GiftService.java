@@ -3,12 +3,14 @@ package com.example.dsemoticonshop.service.interfaces;
 import com.example.dsemoticonshop.dto.GiftDTO;
 import com.example.dsemoticonshop.entity.Gift;
 import com.example.dsemoticonshop.entity.User;
+import org.springframework.http.HttpStatus;
 
 import java.util.List;
 
 public interface GiftService {
 
     List<GiftDTO> getAllWithId(User user, boolean isReceived);
+    HttpStatus register(User user, int gift_id);
 
     default Gift dtoToEntity(GiftDTO giftDTO) {
         Gift gift = Gift.builder()
