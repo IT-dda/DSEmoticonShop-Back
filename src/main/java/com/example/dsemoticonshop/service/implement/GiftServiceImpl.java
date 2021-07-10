@@ -37,11 +37,15 @@ public class GiftServiceImpl implements GiftService {
     @Override
     @Transactional
     public HttpStatus register(User user, int gift_id) {
-        if (giftRepository.getById(gift_id).getTo_id() == null) {
-            giftRepository.registerGift(user, gift_id);
-            return HttpStatus.OK;
+        if (giftRepository.existsById(gift_id)) {
+            if (giftRepository.getById(gift_id).getTo_id() == null) {
+                giftRepository.registerGift(user, gift_id);
+                return HttpStatus.OK;
+            } else {
+                return HttpStatus.NOT_MODIFIED;
+            }
         } else {
-            return HttpStatus.NOT_MODIFIED;
+            return HttpStatus.NOT_FOUND;
         }
     }
 }
