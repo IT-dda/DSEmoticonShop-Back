@@ -3,12 +3,14 @@ package com.example.dsemoticonshop.service.interfaces;
 import com.example.dsemoticonshop.dto.CouponDTO;
 import com.example.dsemoticonshop.entity.Coupon;
 import com.example.dsemoticonshop.entity.User;
+import org.springframework.http.HttpStatus;
 
 import java.util.List;
 
 public interface CouponService {
 
     List<CouponDTO> getAllWithId(User user, boolean isUsed);
+    HttpStatus changeStatus(int coupon_id);
 
     default Coupon dtoToEntity(CouponDTO couponDTO) {
         Coupon coupon = Coupon.builder()
