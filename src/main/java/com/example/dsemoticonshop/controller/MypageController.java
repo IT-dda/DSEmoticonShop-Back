@@ -72,4 +72,13 @@ public class MypageController {
 //        return couponService.changeStatus(id);
 //    }
 
+    // test dislike
+//    @PutMapping("/dislike")
+//    @ResponseBody
+//    public HttpStatus dislike(int user_id, int emoticon_id) {
+//        User user = userRepository.getById(user_id);
+//        Emoticon emoticon = emoticonRepository.getById(emoticon_id);
+//        return likeService.dislike(user, emoticon);
+//    }
+
 }
