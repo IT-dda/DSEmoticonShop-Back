@@ -30,46 +30,46 @@ public class MypageController {
 
     private final UserRepository userRepository;
 
-    public User getUser(int id) {
-        User user = userRepository.getById(id);
+    public User getUser(int user_id) {
+        User user = userRepository.getById(user_id);
         return user;
     }
 
     @GetMapping("/purchase")
-    public ResponseEntity<List<OrderDTO>> purchase(int id) {
-        return new ResponseEntity<>(orderService.getAllWithId(getUser(id)), HttpStatus.OK);
+    public ResponseEntity<List<OrderDTO>> purchase(int user_id) {
+        return new ResponseEntity<>(orderService.getAllWithId(getUser(user_id)), HttpStatus.OK);
     }
 
     @GetMapping("/presents/received")
-    public ResponseEntity<List<GiftDTO>> presents_received(int id) {
-        return new ResponseEntity<>(giftService.getAllWithId(getUser(id), true), HttpStatus.OK);
+    public ResponseEntity<List<GiftDTO>> presents_received(int user_id) {
+        return new ResponseEntity<>(giftService.getAllWithId(getUser(user_id), true), HttpStatus.OK);
     }
 
     @GetMapping("/presents/sent")
-    public ResponseEntity<List<GiftDTO>> presents_sent(int id) {
-        return new ResponseEntity<>(giftService.getAllWithId(getUser(id), false), HttpStatus.OK);
+    public ResponseEntity<List<GiftDTO>> presents_sent(int user_id) {
+        return new ResponseEntity<>(giftService.getAllWithId(getUser(user_id), false), HttpStatus.OK);
     }
 
     @GetMapping("/coupons")
-    public ResponseEntity<List<CouponDTO>> coupons(int id) {
-        return new ResponseEntity<>(couponService.getAllWithId(getUser(id), false), HttpStatus.OK);
+    public ResponseEntity<List<CouponDTO>> coupons(int user_id) {
+        return new ResponseEntity<>(couponService.getAllWithId(getUser(user_id), false), HttpStatus.OK);
     }
 
     @GetMapping("/coupons/used")
-    public ResponseEntity<List<CouponDTO>> coupons_used(int id) {
-        return new ResponseEntity<>(couponService.getAllWithId(getUser(id), true), HttpStatus.OK);
+    public ResponseEntity<List<CouponDTO>> coupons_used(int user_id) {
+        return new ResponseEntity<>(couponService.getAllWithId(getUser(user_id), true), HttpStatus.OK);
     }
 
     @GetMapping("/likes")
-    public ResponseEntity<List<LikeDTO>> likes(int id) {
-        return new ResponseEntity<>(likeService.getAllWithId(getUser(id)), HttpStatus.OK);
+    public ResponseEntity<List<LikeDTO>> likes(int user_id) {
+        return new ResponseEntity<>(likeService.getAllWithId(getUser(user_id)), HttpStatus.OK);
     }
 
     // test change coupon status
 //    @PutMapping("/cp")
 //    @ResponseBody
-//    public HttpStatus coupon_status(int id) {
-//        return couponService.changeStatus(id);
+//    public HttpStatus coupon_status(int user_id) {
+//        return couponService.changeStatus(user_id);
 //    }
 
     // test dislike
