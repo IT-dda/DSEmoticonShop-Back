@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 public class Gift {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GIFT_SEQ")
     @Column(name = "gift_id")
     private int gift_id;
 
