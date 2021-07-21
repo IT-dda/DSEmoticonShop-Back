@@ -12,10 +12,11 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
+@SequenceGenerator(name = "CATEGORY_GEN", sequenceName = "CATEGORY_SEQ", initialValue = 1, allocationSize = 1)
 public class Category {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CATEGORY_SEQ")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CATEGORY_GEN")
     @Column(name = "category_id")
     private int category_id;
 

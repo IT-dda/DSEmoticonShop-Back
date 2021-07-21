@@ -13,10 +13,11 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Table(name = "group_emoticon")
+@SequenceGenerator(name = "GROUP_EMOTICON_GEN", sequenceName = "GROUP_EMOTICON_SEQ", initialValue = 1, allocationSize = 1)
 public class GroupEmoticon {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GROUP_EMOTICON_SEQ")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GROUP_EMOTICON_GEN")
     @Column(name = "id")
     private int id;
 
