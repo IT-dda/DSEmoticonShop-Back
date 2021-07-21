@@ -12,10 +12,11 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString
+@SequenceGenerator(name = "EMOTICON_GEN", sequenceName = "EMOTICON_SEQ", initialValue = 1, allocationSize = 1)
 public class Emoticon {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EMOTICON_SEQ")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EMOTICON_GEN")
     @Column(name = "emoticon_id")
     private int emoticon_id;
 

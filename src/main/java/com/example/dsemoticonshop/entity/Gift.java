@@ -13,10 +13,11 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString
+@SequenceGenerator(name = "GIFT_GEN", sequenceName = "GIFT_SEQ", initialValue = 1, allocationSize = 1)
 public class Gift {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GIFT_SEQ")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GIFT_GEN")
     @Column(name = "gift_id")
     private int gift_id;
 

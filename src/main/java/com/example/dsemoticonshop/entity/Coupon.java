@@ -12,10 +12,11 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString
+@SequenceGenerator(name = "COUPON_GEN", sequenceName = "COUPON_SEQ", initialValue = 1, allocationSize = 1)
 public class Coupon {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "COUPON_SEQ")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "COUPON_GEN")
     @Column(name = "coupon_id")
     private int coupon_id;
 

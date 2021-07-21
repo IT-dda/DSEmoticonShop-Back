@@ -14,10 +14,11 @@ import java.util.List;
 @Getter
 @Setter
 @Table(name = "grp")
+@SequenceGenerator(name = "GROUP_GEN", sequenceName = "GROUP_SEQ", initialValue = 1, allocationSize = 1)
 public class Group {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GROUP_SEQ")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GROUP_GEN")
     @Column(name = "group_id")
     private int group_id;
 
