@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 public class Order {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ORDER_SEQ")
     @Column(name = "order_id")
     private int order_id;
 

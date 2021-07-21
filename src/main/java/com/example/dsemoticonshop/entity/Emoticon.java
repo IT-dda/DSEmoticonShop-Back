@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 public class Emoticon {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EMOTICON_SEQ")
     @Column(name = "emoticon_id")
     private int emoticon_id;
 

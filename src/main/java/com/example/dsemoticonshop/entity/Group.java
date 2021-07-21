@@ -17,6 +17,7 @@ import java.util.List;
 public class Group {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GROUP_SEQ")
     @Column(name = "group_id")
     private int group_id;
 

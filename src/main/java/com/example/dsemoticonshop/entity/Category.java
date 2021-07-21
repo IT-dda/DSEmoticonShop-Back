@@ -15,6 +15,7 @@ import javax.persistence.*;
 public class Category {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CATEGORY_SEQ")
     @Column(name = "category_id")
     private int category_id;
 

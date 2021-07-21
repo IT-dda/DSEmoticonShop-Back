@@ -16,6 +16,7 @@ import java.io.Serializable;
 public class Like implements Serializable {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "LIKE_SEQ")
     @Column(name = "liked_id")
     private int like_id;
 

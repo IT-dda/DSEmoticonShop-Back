@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 public class Coupon {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "COUPON_SEQ")
     @Column(name = "coupon_id")
     private int coupon_id;
 

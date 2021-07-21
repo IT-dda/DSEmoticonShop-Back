@@ -16,6 +16,7 @@ import javax.persistence.*;
 public class GroupEmoticon {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GROUP_EMOTICON_SEQ")
     @Column(name = "id")
     private int id;
 
