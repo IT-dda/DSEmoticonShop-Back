@@ -1,16 +1,17 @@
 package com.example.dsemoticonshop.controller;
 
+import com.example.dsemoticonshop.entity.Emoticon;
 import com.example.dsemoticonshop.entity.User;
+import com.example.dsemoticonshop.repository.EmoticonRepository;
 import com.example.dsemoticonshop.repository.UserRepository;
+import com.example.dsemoticonshop.service.interfaces.CouponService;
 import com.example.dsemoticonshop.service.interfaces.GiftService;
+import com.example.dsemoticonshop.service.interfaces.LikeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @Log4j2
@@ -18,8 +19,24 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class DSController {
 
     private final GiftService giftService;
+    private final CouponService couponService;
+    private final LikeService likeService;
 
     private final UserRepository userRepository;
+    private final EmoticonRepository emoticonRepository;
+
+    public HttpStatus changeCouponStatus(int coupon_id) {
+        return couponService.changeStatus(coupon_id);
+    }
+
+    //  dislike
+    @PutMapping("/dislike")
+    @ResponseBody
+    public HttpStatus dislike(int user_id, int emoticon_id) {
+        User user = userRepository.getById(user_id);
+        Emoticon emoticon = emoticonRepository.getById(emoticon_id);
+        return likeService.dislike(user, emoticon);
+    }
 
     @RequestMapping("/notices")
     public void notices() {

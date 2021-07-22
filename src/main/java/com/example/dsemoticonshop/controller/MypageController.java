@@ -65,20 +65,4 @@ public class MypageController {
         return new ResponseEntity<>(likeService.getAllWithId(getUser(user_id)), HttpStatus.OK);
     }
 
-    // test change coupon status
-//    @PutMapping("/cp")
-//    @ResponseBody
-//    public HttpStatus coupon_status(int user_id) {
-//        return couponService.changeStatus(user_id);
-//    }
-
-    // test dislike
-//    @PutMapping("/dislike")
-//    @ResponseBody
-//    public HttpStatus dislike(int user_id, int emoticon_id) {
-//        User user = userRepository.getById(user_id);
-//        Emoticon emoticon = emoticonRepository.getById(emoticon_id);
-//        return likeService.dislike(user, emoticon);
-//    }
-
 }
