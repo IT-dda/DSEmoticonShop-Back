@@ -8,7 +8,6 @@ import com.example.dsemoticonshop.repository.LikeRepository;
 import com.example.dsemoticonshop.service.interfaces.LikeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -29,9 +28,23 @@ public class LikeServiceImpl implements LikeService {
     }
 
     @Override
+    public void like(Like like) {
+        Like liked = likeRepository.findLikeByUser_idAndEmoticon_id(like.getUser_id(), like.getEmoticon_id());
+        if (liked == null) {
+            likeRepository.save(like);
+        } else{
+            log.info("you already like this emoticon");
+        }
+    }
+
+    @Override
     @Transactional
-    public HttpStatus dislike(User user, Emoticon emoticon) {
-        likeRepository.dislike(user, emoticon);
-        return HttpStatus.OK;
+    public void dislike(User user, Emoticon emoticon) {
+        Like like = likeRepository.findLikeByUser_idAndEmoticon_id(user, emoticon);
+        if (like != null){
+            likeRepository.dislike(user, emoticon);
+        } else {
+            log.info("you already dislike this emoticon");
+        }
     }
 }

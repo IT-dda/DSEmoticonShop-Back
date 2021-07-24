@@ -4,6 +4,7 @@ import com.example.dsemoticonshop.dto.GiftDTO;
 import com.example.dsemoticonshop.entity.Gift;
 import com.example.dsemoticonshop.entity.User;
 import com.example.dsemoticonshop.repository.GiftRepository;
+import com.example.dsemoticonshop.repository.OrderRepository;
 import com.example.dsemoticonshop.service.interfaces.GiftService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -20,6 +21,7 @@ import java.util.stream.Collectors;
 public class GiftServiceImpl implements GiftService {
 
     private final GiftRepository giftRepository;
+    private final OrderRepository orderRepository;
 
     @Override
     public List<GiftDTO> getAllWithId(User user, boolean isReceived) {
@@ -35,11 +37,21 @@ public class GiftServiceImpl implements GiftService {
     }
 
     @Override
+    public void makeGift(Gift gift) {
+        giftRepository.save(gift);
+    }
+
+    @Override
     @Transactional
     public HttpStatus register(User user, int gift_id) {
         if (giftRepository.existsById(gift_id)) {
-            if (giftRepository.getById(gift_id).getTo_id() == null) {
-                giftRepository.registerGift(user, gift_id);
+            Gift gift = giftRepository.getById(gift_id);
+            if (gift.getTo_id() == null) {
+                if (orderRepository.findEmoticon(user, gift.getEmoticon_id()) == 0) {
+                    giftRepository.registerGift(user, gift_id);
+                } else {
+                    return HttpStatus.CONFLICT;
+                }
                 return HttpStatus.OK;
             } else {
                 return HttpStatus.NOT_MODIFIED;

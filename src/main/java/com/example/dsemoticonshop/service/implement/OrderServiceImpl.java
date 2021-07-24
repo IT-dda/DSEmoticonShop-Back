@@ -24,4 +24,14 @@ public class OrderServiceImpl implements OrderService {
         List<Order> orderList = orderRepository.getList(user);
         return orderList.stream().map(order -> entityToDTO(order)).collect(Collectors.toList());
     }
+
+    @Override
+    public void makeOrder(Order order) {
+        Long cnt = orderRepository.findEmoticon(order.getPurchaser(), order.getEmoticon_id());
+        if (cnt == 0) {
+            orderRepository.save(order);
+        } else {
+            log.info("you already have this emoticon");
+        }
+    }
 }

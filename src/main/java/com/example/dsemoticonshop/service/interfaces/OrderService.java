@@ -9,6 +9,7 @@ import java.util.List;
 public interface OrderService {
 
     List<OrderDTO> getAllWithId(User user);
+    void makeOrder(Order order);
 
     default Order dtoToEntity(OrderDTO orderDTO) {
         Order order = Order.builder()

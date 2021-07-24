@@ -14,11 +14,15 @@ public interface LikeRepository extends JpaRepository<Like, Integer> {
 
     // 좋아요 내역 조회
     @Query("select l from Like l where l.user_id = :user")
-    List<Like> getList(@Param("user")User user);
+    List<Like> getList(@Param("user") User user);
+
+    // 좋아요 있는지 찾기
+    @Query("select l from Like l where l.user_id = :user and l.emoticon_id = :emoticon")
+    Like findLikeByUser_idAndEmoticon_id(@Param("user") User user, @Param("emoticon") Emoticon emoticon);
 
     // 좋아요 취소
     @Modifying
     @Query("delete from Like l where l.user_id = :user and l.emoticon_id = :emoticon")
-    void dislike(@Param("user")User user, @Param("emoticon")Emoticon emoticon);
+    void dislike(@Param("user") User user, @Param("emoticon") Emoticon emoticon);
 
 }

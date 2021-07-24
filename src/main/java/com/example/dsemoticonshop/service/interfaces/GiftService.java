@@ -10,6 +10,7 @@ import java.util.List;
 public interface GiftService {
 
     List<GiftDTO> getAllWithId(User user, boolean isReceived);
+    void makeGift(Gift gift);
     HttpStatus register(User user, int gift_id);
 
     default Gift dtoToEntity(GiftDTO giftDTO) {

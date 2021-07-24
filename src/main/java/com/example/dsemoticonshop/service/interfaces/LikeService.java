@@ -4,14 +4,14 @@ import com.example.dsemoticonshop.dto.LikeDTO;
 import com.example.dsemoticonshop.entity.Emoticon;
 import com.example.dsemoticonshop.entity.Like;
 import com.example.dsemoticonshop.entity.User;
-import org.springframework.http.HttpStatus;
 
 import java.util.List;
 
 public interface LikeService {
 
     List<LikeDTO> getAllWithId(User user);
-    HttpStatus dislike(User user, Emoticon emoticon);
+    void like(Like like);
+    void dislike(User user, Emoticon emoticon);
 
     default Like dtoToEntity(LikeDTO likeDTO) {
         Like like = Like.builder()
