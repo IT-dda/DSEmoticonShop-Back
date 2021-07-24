@@ -17,8 +17,8 @@ public interface LikeRepository extends JpaRepository<Like, Integer> {
     List<Like> getList(@Param("user") User user);
 
     // 좋아요 있는지 찾기
-    @Query("select l from Like l where l.user_id = :user and l.emoticon_id = :emoticon")
-    Like findLikeByUser_idAndEmoticon_id(@Param("user") User user, @Param("emoticon") Emoticon emoticon);
+    @Query("select count(l) from Like l where l.user_id = :user and l.emoticon_id = :emoticon")
+    Long findLikeByUser_idAndEmoticon_id(@Param("user") User user, @Param("emoticon") Emoticon emoticon);
 
     // 좋아요 취소
     @Modifying

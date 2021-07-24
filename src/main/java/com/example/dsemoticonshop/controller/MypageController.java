@@ -11,9 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
@@ -31,8 +29,7 @@ public class MypageController {
     private final UserRepository userRepository;
 
     public User getUser(int user_id) {
-        User user = userRepository.getById(user_id);
-        return user;
+        return userRepository.getById(user_id);
     }
 
     @GetMapping("/purchase")

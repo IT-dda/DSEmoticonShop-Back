@@ -1,6 +1,7 @@
 package com.example.dsemoticonshop.service.implement;
 
 import com.example.dsemoticonshop.dto.OrderDTO;
+import com.example.dsemoticonshop.entity.Emoticon;
 import com.example.dsemoticonshop.entity.Order;
 import com.example.dsemoticonshop.entity.User;
 import com.example.dsemoticonshop.repository.OrderRepository;
@@ -27,11 +28,14 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public void makeOrder(Order order) {
-        Long cnt = orderRepository.findEmoticon(order.getPurchaser(), order.getEmoticon_id());
+        User user = order.getPurchaser();
+        Emoticon emoticon = order.getEmoticon_id();
+        Long cnt = orderRepository.findEmoticon(user, emoticon);
         if (cnt == 0) {
             orderRepository.save(order);
         } else {
             log.info("you already have this emoticon");
         }
     }
+
 }

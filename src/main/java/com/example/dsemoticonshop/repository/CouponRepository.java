@@ -13,10 +13,10 @@ public interface CouponRepository extends JpaRepository<Coupon, Integer> {
 
     // 사용 / 미사용 쿠폰 조회
     @Query("select c from Coupon c where c.user_id = :user and c.isUsed = :use")
-    List<Coupon> getList(@Param("user")User user, @Param("use") boolean isUsed);
+    List<Coupon> getList(@Param("user") User user, @Param("use") boolean isUsed);
 
     // 쿠폰 사용 처리
     @Modifying
     @Query("update Coupon c set c.isUsed = TRUE where c.coupon_id = :id")
-    void changeStatus(@Param("id")int coupon_id);
+    void changeStatus(@Param("id") int coupon_id);
 }

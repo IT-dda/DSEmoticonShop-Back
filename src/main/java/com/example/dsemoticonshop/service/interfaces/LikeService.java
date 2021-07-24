@@ -10,7 +10,9 @@ import java.util.List;
 public interface LikeService {
 
     List<LikeDTO> getAllWithId(User user);
+
     void like(Like like);
+
     void dislike(User user, Emoticon emoticon);
 
     default Like dtoToEntity(LikeDTO likeDTO) {

@@ -29,10 +29,12 @@ public class LikeServiceImpl implements LikeService {
 
     @Override
     public void like(Like like) {
-        Like liked = likeRepository.findLikeByUser_idAndEmoticon_id(like.getUser_id(), like.getEmoticon_id());
-        if (liked == null) {
+        User user = like.getUser_id();
+        Emoticon emoticon = like.getEmoticon_id();
+        Long cnt = likeRepository.findLikeByUser_idAndEmoticon_id(user, emoticon);
+        if (cnt == 0) {
             likeRepository.save(like);
-        } else{
+        } else {
             log.info("you already like this emoticon");
         }
     }
@@ -40,11 +42,7 @@ public class LikeServiceImpl implements LikeService {
     @Override
     @Transactional
     public void dislike(User user, Emoticon emoticon) {
-        Like like = likeRepository.findLikeByUser_idAndEmoticon_id(user, emoticon);
-        if (like != null){
-            likeRepository.dislike(user, emoticon);
-        } else {
-            log.info("you already dislike this emoticon");
-        }
+        likeRepository.dislike(user, emoticon);
     }
+    
 }
