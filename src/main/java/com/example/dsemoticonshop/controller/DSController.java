@@ -1,15 +1,20 @@
 package com.example.dsemoticonshop.controller;
 
+import com.example.dsemoticonshop.dto.EmoticonDTO;
 import com.example.dsemoticonshop.entity.*;
+import com.example.dsemoticonshop.repository.EmoticonRepository;
 import com.example.dsemoticonshop.repository.UserRepository;
 import com.example.dsemoticonshop.service.interfaces.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -21,6 +26,7 @@ public class DSController {
     private final CouponService couponService;
     private final LikeService likeService;
     private final OrderService orderService;
+    private final EmoticonService emoticonService;
 
     private final UserRepository userRepository;
     private final EmoticonRepository emoticonRepository;
@@ -148,8 +154,9 @@ public class DSController {
         return "redirect:http://localhost:8080";
     }
 
-    @RequestMapping("/search")
-    public void search() {
-        log.info("========search===========");
+    @GetMapping("/search")
+    public ResponseEntity<List<EmoticonDTO>> search(String q) {
+        return new ResponseEntity<>(emoticonService.search(q), HttpStatus.OK);
     }
+
 }
