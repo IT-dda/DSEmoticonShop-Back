@@ -4,6 +4,7 @@ import com.example.dsemoticonshop.dto.OrderDTO;
 import com.example.dsemoticonshop.entity.Emoticon;
 import com.example.dsemoticonshop.entity.Order;
 import com.example.dsemoticonshop.entity.User;
+import com.example.dsemoticonshop.repository.EmoticonRepository;
 import com.example.dsemoticonshop.repository.OrderRepository;
 import com.example.dsemoticonshop.service.interfaces.OrderService;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,7 @@ import java.util.stream.Collectors;
 public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
+    private final EmoticonRepository emoticonRepository;
 
     @Override
     public List<OrderDTO> getAllWithId(User user) {
@@ -33,6 +35,8 @@ public class OrderServiceImpl implements OrderService {
         Long cnt = orderRepository.findEmoticon(user, emoticon);
         if (cnt == 0) {
             orderRepository.save(order);
+            emoticonRepository.updateQuantity(emoticon.getEmoticon_id());
+            log.info("order success");
         } else {
             log.info("you already have this emoticon");
         }

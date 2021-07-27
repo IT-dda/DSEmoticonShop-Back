@@ -4,12 +4,12 @@ import com.example.dsemoticonshop.dto.GiftDTO;
 import com.example.dsemoticonshop.entity.Emoticon;
 import com.example.dsemoticonshop.entity.Gift;
 import com.example.dsemoticonshop.entity.User;
+import com.example.dsemoticonshop.repository.EmoticonRepository;
 import com.example.dsemoticonshop.repository.GiftRepository;
 import com.example.dsemoticonshop.repository.OrderRepository;
 import com.example.dsemoticonshop.service.interfaces.GiftService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
@@ -24,6 +24,7 @@ public class GiftServiceImpl implements GiftService {
 
     private final GiftRepository giftRepository;
     private final OrderRepository orderRepository;
+    private final EmoticonRepository emoticonRepository;
 
     @Override
     public List<GiftDTO> getAllWithId(User user, boolean isReceived) {
@@ -41,6 +42,8 @@ public class GiftServiceImpl implements GiftService {
     @Override
     public void makeGift(Gift gift) {
         giftRepository.save(gift);
+        emoticonRepository.updateQuantity(gift.getEmoticon_id().getEmoticon_id());
+        log.info("gift success");
     }
 
     @Override
