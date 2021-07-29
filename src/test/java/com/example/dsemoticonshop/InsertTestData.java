@@ -8,6 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.IntStream;
 
 @SpringBootTest
@@ -169,6 +170,7 @@ public class InsertTestData {
                     .emoticon_id(e.get())
                     .from_id(u1.get())
                     .to_id(u2.get())
+                    .code(UUID.randomUUID().toString().substring(9,23).toUpperCase())
                     .build();
             giftRepository.save(gift);
         });

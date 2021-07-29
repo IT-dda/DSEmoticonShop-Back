@@ -12,7 +12,7 @@ public interface GiftService {
 
     void makeGift(Gift gift);
 
-    void register(User user, int gift_id);
+    void register(User user, String code);
 
     default Gift dtoToEntity(GiftDTO giftDTO) {
         Gift gift = Gift.builder()

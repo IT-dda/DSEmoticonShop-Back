@@ -48,13 +48,13 @@ public class GiftServiceImpl implements GiftService {
 
     @Override
     @Transactional
-    public void register(User user, int gift_id) {
-        try {
-            Gift gift = giftRepository.getById(gift_id);
+    public void register(User user, String code) {
+        Gift gift = giftRepository.findGiftByCode(code);
+        if (gift != null) {
             if (gift.getTo_id() == null) {
                 Emoticon emoticon = gift.getEmoticon_id();
                 if (orderRepository.findEmoticon(user, emoticon) == 0) {
-                    giftRepository.registerGift(user, gift_id);
+                    giftRepository.registerGift(user, code);
                     log.info("register gift success");
                 } else {
                     log.info("you already have this emoticon");
@@ -62,8 +62,8 @@ public class GiftServiceImpl implements GiftService {
             } else {
                 log.info("this gift is already used");
             }
-        } catch (EntityNotFoundException e) {
-            log.info("wrong gift number");
+        } else {
+            log.info("wrong gift code");
         }
     }
 

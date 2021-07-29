@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Controller
 @Log4j2
@@ -124,6 +125,8 @@ public class DSController {
             gift.setEmoticon_id(emoticon.get());
             gift.setFrom_id(user.get());
             gift.setTo_id(null);
+            String code = UUID.randomUUID().toString().substring(9,24).toUpperCase();
+            gift.setCode(code);
             giftService.makeGift(gift);
         } else {
             log.info("wrong parameter");
@@ -154,9 +157,9 @@ public class DSController {
 
     @PutMapping("/number")
     @ResponseBody
-    public String registerGift(int user_id, int gift_id) {
+    public String registerGift(int user_id, String q) {
         User user = userRepository.getById(user_id);
-        giftService.register(user, gift_id);
+        giftService.register(user, q);
         return "redirect:http://localhost:8080";
     }
 

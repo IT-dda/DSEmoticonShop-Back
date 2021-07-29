@@ -19,9 +19,13 @@ public interface GiftRepository extends JpaRepository<Gift, Integer> {
     @Query("select g from Gift g where g.from_id = :user")
     List<Gift> getSentList(@Param("user") User user);
 
+    // 선물 조회
+    @Query("select g from Gift g where g.code = :code")
+    Gift findGiftByCode(@Param("code") String code);
+
     // 받은 선물 등록 - g.to_id == null and g.gift_id == id
     @Modifying
-    @Query("update Gift g set g.to_id = :user where g.gift_id = :id")
-    void registerGift(@Param("user") User user, @Param("id") int gift_id);
+    @Query("update Gift g set g.to_id = :user where g.code = :code")
+    void registerGift(@Param("user") User user, @Param("id") String code);
 
 }
