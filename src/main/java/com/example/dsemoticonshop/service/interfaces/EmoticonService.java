@@ -9,6 +9,8 @@ public interface EmoticonService {
 
     List<EmoticonDTO> search(String query);
 
+    EmoticonDTO getDetail(int emoticon_id);
+
     default Emoticon dtoToEntity(EmoticonDTO emoticonDTO) {
         Emoticon emoticon = Emoticon.builder()
                 .emoticon_id(emoticonDTO.getEmoticon_id())

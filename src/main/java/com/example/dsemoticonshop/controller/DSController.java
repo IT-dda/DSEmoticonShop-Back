@@ -12,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -33,6 +34,11 @@ public class DSController {
 
     public void changeCouponStatus(int coupon_id) {
         couponService.changeStatus(coupon_id);
+    }
+
+    @GetMapping("/t/{idx}")
+    public EmoticonDTO EmoticonDetail(@PathVariable("idx") int emoticon_id) {
+        return emoticonService.getDetail(emoticon_id);
     }
 
     @PostMapping("/like")
