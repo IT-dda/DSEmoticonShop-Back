@@ -42,4 +42,7 @@ public class Gift {
     @JoinColumn(name = "to_id")
     private User to_id;
 
+    @Column(name = "code")
+    private String code;
+
 }

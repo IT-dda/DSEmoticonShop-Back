@@ -29,4 +29,6 @@ public class GiftDTO {
 
     private User to_id;
 
+    private String code;
+
 }
