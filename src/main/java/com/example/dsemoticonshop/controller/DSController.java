@@ -42,6 +42,51 @@ public class DSController {
         return emoticonService.getDetail(emoticon_id);
     }
 
+    @PostMapping("/t/{idx}")
+    public String makeOrder(HttpServletRequest request, @PathVariable("idx") int emoticon_id) {
+        String method = request.getParameter("method");
+        int order_price = Integer.parseInt(request.getParameter("order_price"));
+        int user_id = Integer.parseInt(request.getParameter("purchaser"));
+        Optional<Emoticon> emoticon = emoticonRepository.findById(emoticon_id);
+        Optional<User> user = userRepository.findById(user_id);
+
+        if (emoticon.isPresent() && user.isPresent()) {
+            boolean isGift = request.getParameter("isGift").equals("1");
+            if (isGift) {
+                Gift gift = new Gift();
+                gift.setOrder_date(LocalDateTime.now());
+                gift.setMethod(method);
+                gift.setOrder_price(order_price);
+                gift.setEmoticon_id(emoticon.get());
+                gift.setFrom_id(user.get());
+                gift.setTo_id(null);
+                String code = UUID.randomUUID().toString().substring(9, 24).toUpperCase();
+                gift.setCode(code);
+                giftService.makeGift(gift);
+                log.info("make gift success");
+            } else {
+                Order order = new Order();
+                order.setOrder_date(LocalDateTime.now());
+                order.setMethod(method);
+                order.setOrder_price(order_price);
+                order.setEmoticon_id(emoticon.get());
+                order.setPurchaser(user.get());
+                orderService.makeOrder(order);
+                log.info("make order success");
+            }
+
+            String coupon_id = request.getParameter("coupon_id");
+            if (coupon_id != null) {
+                changeCouponStatus(Integer.parseInt(coupon_id));
+                log.info("change coupon status");
+            }
+        } else {
+            log.info("wrong parameter");
+        }
+
+        return "redirect:http://localhost:8080";
+    }
+
     @PostMapping("/like")
     public String like(HttpServletRequest request) {
         int user_id = Integer.parseInt(request.getParameter("user_id"));
@@ -77,67 +122,6 @@ public class DSController {
 
         String referer = request.getHeader("Referer");
         return "redirect:" + referer;
-    }
-
-    @PostMapping("/order")
-    public String makeOrder(HttpServletRequest request) {
-        String method = request.getParameter("method");
-        int order_price = Integer.parseInt(request.getParameter("order_price"));
-        int emoticon_id = Integer.parseInt(request.getParameter("emoticon_id"));
-        int user_id = Integer.parseInt(request.getParameter("purchaser"));
-        Optional<Emoticon> emoticon = emoticonRepository.findById(emoticon_id);
-        Optional<User> user = userRepository.findById(user_id);
-
-        if (emoticon.isPresent() && user.isPresent()) {
-            Order order = new Order();
-            order.setOrder_date(LocalDateTime.now());
-            order.setMethod(method);
-            order.setOrder_price(order_price);
-            order.setEmoticon_id(emoticon.get());
-            order.setPurchaser(user.get());
-            orderService.makeOrder(order);
-        } else {
-            log.info("wrong parameter");
-        }
-
-        String coupon_id = request.getParameter("coupon_id");
-        if (coupon_id != null) {
-            changeCouponStatus(Integer.parseInt(coupon_id));
-        }
-
-        return "redirect:http://localhost:8080";
-    }
-
-    @PostMapping("/present")
-    public String makePresent(HttpServletRequest request) {
-        String method = request.getParameter("method");
-        int order_price = Integer.parseInt(request.getParameter("order_price"));
-        int emoticon_id = Integer.parseInt(request.getParameter("emoticon_id"));
-        int user_id = Integer.parseInt(request.getParameter("purchaser"));
-        Optional<Emoticon> emoticon = emoticonRepository.findById(emoticon_id);
-        Optional<User> user = userRepository.findById(user_id);
-
-        if (emoticon.isPresent() && user.isPresent()) {
-            Gift gift = new Gift();
-            gift.setOrder_date(LocalDateTime.now());
-            gift.setMethod(method);
-            gift.setOrder_price(order_price);
-            gift.setEmoticon_id(emoticon.get());
-            gift.setFrom_id(user.get());
-            gift.setTo_id(null);
-            String code = UUID.randomUUID().toString().substring(9,24).toUpperCase();
-            gift.setCode(code);
-            giftService.makeGift(gift);
-        } else {
-            log.info("wrong parameter");
-        }
-
-        String coupon_id = request.getParameter("coupon_id");
-        if (coupon_id != null) {
-            changeCouponStatus(Integer.parseInt(coupon_id));
-        }
-
-        return "redirect:http://localhost:8080";
     }
 
     @RequestMapping("/notices")
