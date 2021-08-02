@@ -104,7 +104,8 @@ public class DSController {
         }
 
         String referer = request.getHeader("Referer");
-        return "redirect:" + referer;
+//        return "redirect:" + referer;
+        return "redirect:http://localhost:8080";
     }
 
     @DeleteMapping("/dislike")
@@ -121,7 +122,8 @@ public class DSController {
         }
 
         String referer = request.getHeader("Referer");
-        return "redirect:" + referer;
+//        return "redirect:" + referer;
+        return "redirect:http://localhost:8080";
     }
 
     @RequestMapping("/notices")
