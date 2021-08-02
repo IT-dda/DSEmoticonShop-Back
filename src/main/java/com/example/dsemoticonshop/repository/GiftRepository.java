@@ -26,6 +26,6 @@ public interface GiftRepository extends JpaRepository<Gift, Integer> {
     // 받은 선물 등록 - g.to_id == null and g.gift_id == id
     @Modifying
     @Query("update Gift g set g.to_id = :user where g.code = :code")
-    void registerGift(@Param("user") User user, @Param("id") String code);
+    void registerGift(@Param("user") User user, @Param("code") String code);
 
 }
