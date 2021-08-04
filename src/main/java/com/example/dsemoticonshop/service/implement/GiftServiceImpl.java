@@ -12,7 +12,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -40,9 +39,11 @@ public class GiftServiceImpl implements GiftService {
     }
 
     @Override
+    @Transactional
     public void makeGift(Gift gift) {
         giftRepository.save(gift);
-        emoticonRepository.updateQuantity(gift.getEmoticon_id().getEmoticon_id());
+        Emoticon emoticon = gift.getEmoticon_id();
+        emoticonRepository.updateQuantity(emoticon.getEmoticon_id(), emoticon.getQuantity() + 1);
         log.info("gift success");
     }
 

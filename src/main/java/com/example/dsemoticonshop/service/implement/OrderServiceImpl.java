@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,13 +30,14 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    @Transactional
     public void makeOrder(Order order) {
         User user = order.getPurchaser();
         Emoticon emoticon = order.getEmoticon_id();
         Long cnt = orderRepository.findEmoticon(user, emoticon);
         if (cnt == 0) {
             orderRepository.save(order);
-            emoticonRepository.updateQuantity(emoticon.getEmoticon_id());
+            emoticonRepository.updateQuantity(emoticon.getEmoticon_id(), emoticon.getQuantity() + 1);
             log.info("order success");
         } else {
             log.info("you already have this emoticon");

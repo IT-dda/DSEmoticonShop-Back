@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -38,8 +37,9 @@ public class DSController {
     }
 
     @GetMapping("/t/{idx}")
-    public EmoticonDTO EmoticonDetail(@PathVariable("idx") int emoticon_id) {
-        return emoticonService.getDetail(emoticon_id);
+    public ResponseEntity<EmoticonDTO> EmoticonDetail(@PathVariable("idx") int emoticon_id) {
+        EmoticonDTO emoticonDTO = emoticonService.getDetail(emoticon_id);
+        return new ResponseEntity<>(emoticonDTO, HttpStatus.OK);
     }
 
     @PostMapping("/t/{idx}")
@@ -60,10 +60,9 @@ public class DSController {
                 gift.setEmoticon_id(emoticon.get());
                 gift.setFrom_id(user.get());
                 gift.setTo_id(null);
-                String code = UUID.randomUUID().toString().substring(9, 24).toUpperCase();
+                String code = UUID.randomUUID().toString().substring(9, 23).toUpperCase();
                 gift.setCode(code);
                 giftService.makeGift(gift);
-                log.info("make gift success");
             } else {
                 Order order = new Order();
                 order.setOrder_date(LocalDateTime.now());
@@ -72,11 +71,10 @@ public class DSController {
                 order.setEmoticon_id(emoticon.get());
                 order.setPurchaser(user.get());
                 orderService.makeOrder(order);
-                log.info("make order success");
             }
 
             String coupon_id = request.getParameter("coupon_id");
-            if (coupon_id != null) {
+            if (!coupon_id.equals("")) {
                 changeCouponStatus(Integer.parseInt(coupon_id));
                 log.info("change coupon status");
             }

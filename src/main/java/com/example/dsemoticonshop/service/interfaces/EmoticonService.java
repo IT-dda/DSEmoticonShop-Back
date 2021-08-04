@@ -36,4 +36,5 @@ public interface EmoticonService {
                 .build();
         return emoticonDTO;
     }
+
 }

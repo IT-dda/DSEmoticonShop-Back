@@ -44,5 +44,5 @@ public class LikeServiceImpl implements LikeService {
     public void dislike(User user, Emoticon emoticon) {
         likeRepository.dislike(user, emoticon);
     }
-    
+
 }
